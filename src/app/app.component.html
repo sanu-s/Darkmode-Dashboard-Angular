@@ -1,0 +1,12 @@
+<!-- <mat-toolbar>
+  <span>My Application</span>
+  <span  (click)="logout()" style="position: absolute;right: 13px;cursor:pointer">Logout</span>
+</mat-toolbar> -->
+<div [ngClass]="{'dark-theme': isDarkTheme}">
+  <div class="mat-app-background">
+<app-main-toolbar></app-main-toolbar>
+<router-outlet></router-outlet>
+
+<app-loader></app-loader>
+</div>
+</div>

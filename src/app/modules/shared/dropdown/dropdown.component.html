@@ -1,0 +1,8 @@
+<mat-form-field appearance="outline">
+  <mat-select disableRipple [ngModel]="selected" (ngModelChange)="selectItem($event)" >
+    <mat-option  *ngFor="let item of items" [value]="item">{{item?.value?item?.value:item}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+
+

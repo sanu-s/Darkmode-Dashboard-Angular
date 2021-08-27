@@ -1,0 +1,149 @@
+.sub-item {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.right {
+    font-weight: 800;
+}
+
+
+.head {
+    width: 100%;
+    padding: 3%;
+
+
+    .headcard {
+      width: 20%;
+      margin-left: 4%;
+      margin-top: 1%;
+      border: solid 1px rgba(0, 0, 0, 0.12);
+    }
+}
+
+// .mat-card:not([class*=mat-elevation-z]) {
+//     box-shadow: 0 2px 1px -1px rgba(0,0,0,1), 
+//                 0 1px 1px 0 rgba(0,0,0,1), 
+//                 0 1px 3px 0 rgba(0,0,0,1);
+// }
+
+mgl-timeline-entry-dot {
+  z-index: 100;
+}
+
+.prog-cont {
+  display: flex;
+  justify-content: center;
+  padding: 2%;
+  text-align: center;
+  border-top: solid 1px grey;
+  border-bottom: solid 1px grey;
+}
+
+
+.progress-cir {
+  margin: auto;
+  text-align: center;
+}
+
+mat-card {
+    transition: none;
+    box-shadow: none;
+    display: inline-block; 
+    // display: flex;
+    justify-content: center;
+    text-align: center;
+
+    mat-card {
+       
+        min-width: 20vw;
+        border: solid 1px lightgoldenrodyellow;
+
+    }
+    mat-card-title {
+        margin-top: 25px;
+        font-size: 19px;
+    }
+}
+.sub-inn-card {
+    font-size: 91px;
+    border: solid 1px;
+    border-radius: 31px;
+    color: white;
+}
+
+
+
+
+.section2, .section1 {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: solid 1px silver;
+    width: 95%;
+    margin: 0 auto;
+    padding: 3%;
+    margin-bottom: 2%;
+    margin-top: 2%;
+
+    label {
+        margin-right: 17px;
+    }
+}
+
+.wrap .sub-item {
+    display: inherit;
+}
+
+.wrap {
+    align-items: center;
+    justify-content: center;
+    display: inline-block;
+}
+
+mat-form-field {
+    min-width: 18.3vw;
+}
+table {
+    margin: 0 auto;
+    max-height: 40px;
+td {
+    font-style: normal;
+    border: solid 1px;
+    padding: 12px;
+}
+}
+
+.act {
+  text-align: center;
+#activities {
+  border-collapse: collapse;
+  width: 90%;
+}
+
+#activities td, #activities thead {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#activities tr:nth-child(even){background-color: gray;}
+
+// #activities tr:hover {background-color:gray;}
+
+#activities thead {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  font-weight: bold;
+  background-color:#E53935;
+  color: white;
+}
+button {
+  background: #43A047;
+  color: white;
+  width: 90%;
+}
+}
+
+
+
+

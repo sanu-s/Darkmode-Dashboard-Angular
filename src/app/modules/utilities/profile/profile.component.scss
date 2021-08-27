@@ -1,0 +1,138 @@
+mat-form-field {
+  width: 32vw;
+}
+
+form {
+    text-align: center;
+    height: 100%;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+}
+
+.mat-tab-group{
+    height: 100%;
+}
+:host ::ng-deep .mat-tab-body-wrapper {
+    height: 100%!important;
+}
+
+.mat-tab-body {
+    display: flex !important;
+    flex-direction: column;
+}
+
+.mat-tab-body-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.profile-icon {
+    // height: 178px;
+    // width: 178px;
+    // margin: 0 auto;
+    // border-radius: 94px;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    font-size: 130px;
+    // background: gainsboro;
+}
+img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+  }
+.hoverable{
+    position: relative;
+    display: block;
+    cursor: pointer;
+    height: 200px;
+    width: 200px;
+    // border: 5px solid #000;
+    border-radius: 50%;
+    margin: 0 auto;
+    // border-radius: 94px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // font-size: 130px;
+    background: gainsboro;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .hoverable .hover-text{
+    position: absolute;
+    display: none;
+    top: 50%;
+    left:  50%;
+    transform: translate(-50%,-50%);   
+    z-index: 2;
+  }
+  .hoverable .background{
+    position: absolute;
+    display: none;
+    top: 0;
+    left:  0;
+    bottom: 0;
+    right: 0;
+    background-color:rgba(255, 255, 255, 0.5);
+    pointer-events: none;
+    border-radius: 50%;
+    z-index: 1;
+  }
+  .hoverable:hover .hover-text{
+    display: block;
+  }
+  .hoverable:hover .profile-icon{
+    display: none;
+  }
+  .hoverable:hover .background{
+    display: block;
+  }
+
+  #fileInput{
+  display: none;
+}
+
+.inner-pro {
+  width: 55%;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.example-radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+  display:inline-flex
+}
+
+.example-radio-button {
+  margin: 5px;
+}
+
+.wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.profile-page {
+
+    cursor: pointer;
+  
+}
+
+
+.sticky {
+  position: sticky;
+  top: 0;
+}
+
+.active {
+    font-weight: bold;
+    color: #2196f3;
+    font-size: 1.2rem;
+}

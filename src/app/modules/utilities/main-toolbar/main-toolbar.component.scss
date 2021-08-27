@@ -1,0 +1,27 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+  .profile-icon {
+    text-align: center;
+    vertical-align: middle;
+    background: #8e8585;
+    border-radius: 50px;
+    width: 34px;
+    height: 34px;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  background: royalblue;
+}

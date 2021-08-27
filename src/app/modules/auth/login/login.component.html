@@ -1,0 +1,110 @@
+﻿<!-- <div class="login-box" *ngIf="!loader" >
+    <div class="mt-3" style="min-width:21%">
+        <div class="card">
+            <h4 class="card-header">{{loginView?(authkey?'Change Password':'Login'):'Enter Email'}}</h4>
+            <div class="card-body">
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group" *ngIf="!authkey">
+                        <label for="username">Email</label>
+                        <input type="text" formControlName="username" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                            <div *ngIf="f.username.errors.required">Username is required</div>
+                        </div>
+                    </div>
+                    <div *ngIf="loginView" class="form-group">
+                        <label for="password">{{authkey?'New Password': 'Password'}}</label>
+                        <input type="password" formControlName="password" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                            <div *ngIf="f.password.errors.required">Password is required</div>
+                        </div>
+                    </div>
+                    <div *ngIf="loginView && authkey" class="form-group">
+                        <label for="password2">Re-enter Password</label>
+                        <input type="password" formControlName="password2" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.password2.errors }" />
+                        <div *ngIf="submitted && f.password2.errors" class="invalid-feedback">
+                            <div *ngIf="f.password2.errors.required">Password is required</div>
+                        </div>
+                    </div>
+                    <button [disabled]="loading" class="btn btn-primary ju">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                        {{loginView?(authkey?'Change Password':'Login'):'Send'}}
+                    </button>
+                    <p style="cursor:pointer" *ngIf="!authkey" (click)="loginView?loginView = false:loginView = true">
+                        {{loginView?'Forgot password':'Back to login'}}</p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div>
+<div id="wrapper">
+    <div id="left">
+        <div id="signin">
+            <div id="logo">
+                <img src="https://i.postimg.cc/2yNgyPBv/graycars.png" alt="Gray">
+            </div>
+ <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group" *ngIf="!authkey">
+                        <label for="username">Email</label>
+                        <input type="text" formControlName="username" 
+                            [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                            <div *ngIf="f.username.errors.required">Username is required</div>
+                        </div>
+                    </div>
+                    <div *ngIf="loginView" class="form-group">
+                        <label for="password">{{authkey?'New Password': 'Password'}}</label>
+                        <input type="password" formControlName="password" 
+                            [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                            <div *ngIf="f.password.errors.required">Password is required</div>
+                        </div>
+                    </div>
+                    <div *ngIf="loginView && authkey" class="form-group">
+                        <label for="password2">Re-enter Password</label>
+                        <input type="password" formControlName="password2" 
+                            [ngClass]="{ 'is-invalid': submitted && f.password2.errors }" />
+                        <div *ngIf="submitted && f.password2.errors" class="invalid-feedback">
+                            <div *ngIf="f.password2.errors.required">Password is required</div>
+                        </div>
+                    </div>
+                    <button class="primary-btn">
+                        {{loginView?(authkey?'Change Password':'Login'):'Send'}}
+                    </button>
+                </form>
+            <div class="links">
+                <a style="cursor:pointer" *ngIf="!authkey" (click)="loginView?loginView = false:loginView = true">
+                    {{loginView?'Forgot password':'Back to login'}}</a>
+            </div>
+            <!-- <div class="or">
+                <hr class="bar"/>
+                <span>OR</span>
+                <hr class="bar"/>
+            </div>
+            <a href="#" class="secondary-btn">Create an account</a> -->
+        </div>
+        <footer id="main-footer">
+            <p>Copyright &copy; AnalyticAura All Rights Reserved</p>
+            <div>
+                <a href="#">Terms of use</a> | <a href="#">Privacy Policy</a>
+            </div>
+        </footer>
+        
+    </div>
+    <div id="right">
+        <div id="showcase">
+            <div class="showcase-content">
+                <h1 class="showcase-text">
+                   {{quote?.quote}}
+                </h1>
+                <p class="secondary-btn">{{quote?.author}}</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>

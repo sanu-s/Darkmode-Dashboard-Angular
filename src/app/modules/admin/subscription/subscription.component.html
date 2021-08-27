@@ -1,0 +1,215 @@
+
+<div style="height: 100%;">
+<mat-tab-group  *ngIf="subs" mat-stretch-tabs style="margin-top: 62px;">
+    <mat-tab label="Subscription details">
+<div class="head">
+
+    <mat-card class="headcard">
+        <mat-card-subtitle> Plan name </mat-card-subtitle>
+        <span style=" background: crimson;" class="material-icons sub-inn-card">
+            account_balance_wallet
+        </span>
+        <mat-card-title>{{subs?.plan}}</mat-card-title>
+
+    </mat-card>
+
+    <mat-card class="headcard">
+        <mat-card-subtitle> Plan Validity </mat-card-subtitle>
+        <span style=" background: purple;" class="material-icons sub-inn-card">
+            schedule
+        </span>
+        <mat-card-title>{{subs?.account_period}} Days</mat-card-title>
+
+    </mat-card>
+
+
+    <mat-card class="headcard">
+        <mat-card-subtitle> Plan Started at </mat-card-subtitle>
+        <span style=" background: #ff8800;" class="material-icons sub-inn-card">
+            date_range
+        </span>
+        <mat-card-title>{{localTime(subs?.starts_at) | date:"dd-MM-y HH:mm:ss"}}</mat-card-title>
+
+    </mat-card>
+
+    <mat-card class="headcard">
+        <mat-card-subtitle> Plan Expires at </mat-card-subtitle>
+        <span style=" background: #7bff00;" class="material-icons sub-inn-card">
+            update
+        </span>
+        <mat-card-title>{{localTime(subs?.account_expire_at) | date:"dd-MM-y HH:mm:ss"}}</mat-card-title>
+
+    </mat-card>
+
+</div>
+
+
+<div class="prog-cont">
+    <div style="width: 50%;">
+        <h2>Models Usage</h2>
+    <app-graph  [areagraphvalues]="areaChart"></app-graph>
+    </div>
+    <div style="width: 50%;">
+        <h2>User Activities</h2>
+    <app-graph [linegraphvalues]="lineChart"></app-graph>
+</div>
+</div>
+
+<div style="text-align: center; padding-top:2%">
+    <h2>Usage Statistics</h2>
+
+<div class="prog-cont" style="border-top: none;">
+    <div class="progress-cir">
+        <circle-progress [percent]="(subs?.days_remain)/+subs?.account_period * 100" [maxPercent]="100"
+            [radius]="100" [subtitle]="'out of ' + subs?.account_period +' Days'" [subtitleFontSize]="'15'" [showUnits]="false"
+            [title]="+subs?.days_remain + ' Days'" [outerStrokeWidth]="16" [innerStrokeWidth]="8" [outerStrokeColor]="'green'"
+            [innerStrokeColor]="'#C7E596'" [animation]="true" [animationDuration]="500"></circle-progress>
+        <h4>Days Remaining</h4>
+    </div>
+    <div class="progress-cir">
+        <circle-progress [percent]="(+subs?.projects_allowed - subs?.projects_created)/(+subs?.projects_allowed) * 100"
+            [maxPercent]="100" [radius]="100" [subtitle]="'out of ' + subs?.projects_allowed" [subtitleFontSize]="'15'"
+            [showUnits]="false" [title]="+subs?.projects_created + ' Projects'" [outerStrokeWidth]="16" [innerStrokeWidth]="8"
+            [outerStrokeColor]="'yellow'" [innerStrokeColor]="'khaki'" [animation]="true" [animationDuration]="500">
+        </circle-progress>
+        <h4>Projects Remaining</h4>
+    </div>
+
+    <div class="progress-cir">
+        <circle-progress [percent]="subs?.model_quality_allowed==1?'100':subs?.model_quality_allowed==2?'75':'50'" [maxPercent]="100" [radius]="100" [subtitle]="''"
+            [subtitleFontSize]="'15'" [showUnits]="false" [title]="subs?.model_quality_allowed==1?'High':subs?.model_quality_allowed==2?'Medium':'Low'" [outerStrokeWidth]="16"
+            [innerStrokeWidth]="8" [outerStrokeColor]="subs?.model_quality_allowed==1?'lightgreen':subs?.model_quality_allowed==2?'yellow':'red'" [innerStrokeColor]="subs?.model_quality_allowed==1?'palegreen':subs?.model_quality_allowed==2?'khaki':'red'" [animation]="true"
+            [animationDuration]="500"></circle-progress>
+        <h4>Model Quality</h4>
+    </div>
+
+</div>
+</div>
+<div  style="text-align: center; padding-top:2%">
+    <h2>Subscription History</h2>
+<div class = "prog-cont" style="border-top: none;">
+    <mgl-timeline [toggle]="toggle" [alternate]="alternate" [side]="side">
+        <mgl-timeline-entry *ngFor="let entry of subs?.timeline; let i = index;"
+            (expand)="onExpandEntry($event, i)">
+            <mgl-timeline-entry-header [ngStyle] = "entry?.status =='current'&& {'background':'#E53935', 'color':'white'} || entry?.status =='upcoming'&& {'background':'#43A047', 'color':'white'} || entry?.status =='expired'&& {'background':'gray', 'color':'white'}" (click)="onHeaderClick($event)">
+                <div>{{entry?.plan}}</div>
+            </mgl-timeline-entry-header>
+            <mgl-timeline-entry-content style="font-style: italic;" [expandAnimationTiming]="contentAnimation ? '200ms ease' : '0ms'"
+                [collapseAnimationTiming]="contentAnimation ? '100ms ease' : '0ms'">
+                <div>
+                    <div>
+                        <span style="font-weight: bold;">Starts At: </span>{{entry?.start_at}}
+                    </div>
+                    <div>
+                        <span style="font-weight: bold;">Expire At: </span>{{entry?.expire_at}}
+                    </div>
+                    <div>
+                        <span style="font-weight: bold;">Account Period: </span>{{entry?.account_period}}
+                    </div>
+                </div>
+            </mgl-timeline-entry-content>
+            <mgl-timeline-entry-dot [ngStyle]="entry?.status =='current'&& {'background':'#E53935', 'color':'white'} || entry?.status =='upcoming'&& {'background':'#43A047', 'color':'white'} || entry?.status =='expired'&& {'background':'gray', 'color':'white'}"  [class]="color ? 'primary' : 'accent'" [size]="size" (click)="onDotClick($event)"
+                [expandAnimationTiming]="dotAnimation ? '200ms ease' : '0ms'"
+                [collapseAnimationTiming]="dotAnimation ? '100ms ease' : '0ms'"></mgl-timeline-entry-dot>
+            <mgl-timeline-entry-side>{{entry?.start_at}}</mgl-timeline-entry-side>
+        </mgl-timeline-entry>
+    </mgl-timeline>
+</div>
+</div>
+</mat-tab>
+<mat-tab *ngIf="user?.is_admin" label="Edit Subscription">
+<mat-tab-group mat-stretch-tabs>
+    <mat-tab label="Reactivate">
+        <div class="section2">
+            <div class="form-group">
+                <label for="role">Immediate</label>
+                <mat-checkbox id="role" [ngModelOptions]="{standalone: true}" name="immediate" ngDefaultControl
+                    [(ngModel)]="immediate"></mat-checkbox>
+            </div>
+            <button class="primary-btn" (click)="submit('reactive')" mat-stroked-button color="primary"
+                cdkFocusInitial>Save</button>
+        </div>
+
+    </mat-tab>
+    <mat-tab label="Change">
+        <div class="section2">
+            <form [formGroup]="form" class="add-field">
+                <div mat-dialog-content>
+                    <br />
+                    <div class="form-group">
+                        <label for="role">Immediate</label>
+                        <mat-checkbox id="role"
+                            (click)="form.controls.immediate.value == true ? form.controls.immediate.setValue(false):form.controls.immediate.setValue(true)">
+                        </mat-checkbox>
+                    </div>
+                    <div>
+                        <mat-label>Select Plan</mat-label><br />
+                        <app-dropdown [values]="plan" (select)="form.controls.plan.setValue($event)">
+                        </app-dropdown>
+                    </div>
+                    <div *ngIf="form.controls.plan.value === 'CUSTOM'">
+                        <mat-label>Project Count</mat-label><br />
+                        <mat-form-field appearance="outline">
+                            <input type="number" formControlName="project_count" min="1" max="100" ngDefaultControl
+                                matInput placeholder="Enter Project Count">
+                        </mat-form-field>
+                    </div>
+                    <div *ngIf="form.controls.plan.value === 'CUSTOM'">
+                        <mat-label>Select Model Quality</mat-label><br />
+                        <app-dropdown [values]="model_quality" (select)="form.controls.model_quality.setValue($event)">
+                        </app-dropdown>
+                    </div>
+                </div>
+                <br />
+                <button class="primary-btn" [disabled]="form.controls.value" (click)="submit('change')" mat-stroked-button color="primary"
+                    cdkFocusInitial>Save</button>
+                <br />
+            </form>
+        </div>
+
+    </mat-tab>
+    <mat-tab label="Delete">
+        <div class="section2">
+            <div>
+                <mat-label>Delete Plan</mat-label><br />
+                <app-dropdown [values]="upcoming_subs" (select)="selected_sub = $event">
+                </app-dropdown>
+            </div>
+            <br />
+            <button [disabled] ="upcoming_subs.length == 0" class="primary-btn" (click)="submit('delete')" mat-stroked-button
+                color="primary" cdkFocusInitial>Delete</button>
+            <br />
+        </div>
+    </mat-tab>
+</mat-tab-group>
+
+</mat-tab>
+
+    <mat-tab label="Activities" *ngIf="user?.is_admin">
+
+        <div class="act">
+            <button class="primary-btn" (click)="activity('csv')" mat-stroked-button color="primary"
+            cdkFocusInitial>Download
+        </button>
+            <table id = "activities">
+                <thead>
+                    <td>
+                        Activity
+                    </td>
+                    <td>
+                        Time
+                    </td>
+                </thead>
+                <tr *ngFor="let act of activities">
+                    <td>
+                        {{act.description}}
+                    </td>
+                    <td>
+                        {{act.time}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </mat-tab>
+</mat-tab-group>
+</div>

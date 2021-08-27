@@ -1,0 +1,77 @@
+ table {
+    width: 100%;
+    cursor: pointer;
+  }
+
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+
+  .first {
+    width: 20%;
+    /* position: fixed; */
+    float: left;
+    /* background: red; */
+    margin-top: 5%;
+  }
+
+  .model-labels {
+    padding-top: 3%;
+    .label{
+        margin-left: 10%;
+    }
+    display: flex;
+    justify-content: center;
+  }
+  .second {
+    width: 80%;
+    float: left;
+  }
+  
+  tr.example-detail-row {
+    height: 0;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):hover {
+    background: gray;
+    td {
+    color: white;
+    }
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):active {
+    background: gray;
+    td {
+      color: white;
+      }
+  }
+  
+  .example-element-row td {
+    border-bottom-width: 0;
+  }
+  
+  .example-element-detail {
+    overflow: hidden;
+    display: flex;
+  }
+
+  .mat-column-expandedDetail{
+    background: black;
+  }
+  
+  .example-element-diagram {
+   width: 100%;
+   display: flex;
+   justify-content: center;
+  }
+  
+
+
+  td {
+    text-align: left;
+  }
+  
+  text {
+    fill: red !important;
+}

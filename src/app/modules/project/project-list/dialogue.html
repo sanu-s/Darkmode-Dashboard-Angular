@@ -1,0 +1,29 @@
+<form [formGroup]="projectForm" style="text-align: center;">
+        <div>
+            <!-- <div class="profile-icon">
+                {{profileForm.controls.name.value[0]}}
+            </div> -->
+
+                <p>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Enter project name</mat-label>
+                        <input minlength="4" matInput formControlName="name" placeholder="Enter project name">
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Enter description</mat-label>
+                        <textarea  minlength="20" matInput formControlName="description" placeholder="Enter description"> </textarea>
+                    </mat-form-field>
+                </p>
+                <p style="margin-bottom:3.5%">
+                    <span class="upload-btn-wrapper" style="width:100%">
+                        <button class="btn" [ngStyle]="fileName && {'background':'#43A047', 'color':'white'}">{{fileName?fileName:'Click here to upload a file'}}</button>
+                        <input #fileInput type="file" name="myfile" accept=".csv, .tsv, .xls, .xlsx"
+                        (change)="onSelectFile($event.target.files)" />
+                    </span>
+                </p>    
+            <button (click)="onNoClick()" mat-stroked-button color="primary">Cancel</button>
+            <button style="margin-left: 1%;" [disabled]="projectForm.invalid" (click)="submit()" mat-stroked-button color="primary">Create</button>
+        </div>
+    </form>

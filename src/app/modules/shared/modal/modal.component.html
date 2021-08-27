@@ -1,0 +1,48 @@
+<form [formGroup]="form" class="add-field">
+    <div mat-dialog-content>
+        <br />
+        <mat-label>Name</mat-label><br />
+        <mat-form-field appearance="outline">
+            <input formControlName="name" ngDefaultControl matInput placeholder="Enter Name" maxlength="20">
+            <mat-error *ngIf="form.controls.name?.invalid">
+                Enter a valid name
+            </mat-error>
+        </mat-form-field>
+        <mat-label>Email</mat-label><br />
+        <mat-form-field  appearance="outline">
+            <input  formControlName="email" ngDefaultControl matInput placeholder="Enter Email">
+            <mat-error *ngIf="form.controls.email?.invalid">
+                Enter a valid email
+            </mat-error>
+        </mat-form-field>
+        <div *ngIf="!data.admin && data.mode === 'create'">
+            <mat-label>Select Plan</mat-label><br />
+            <app-dropdown [values]="plan" (select)="get($event)"></app-dropdown>
+        </div>
+        <div *ngIf="form.controls.plan.value === 'CUSTOM'">
+            <mat-label>Project Count</mat-label><br />
+            <mat-form-field appearance="outline">
+                <input type="number" formControlName="project_count" min="1" max="100" ngDefaultControl matInput placeholder="Enter Project Count">
+            </mat-form-field>
+        </div>
+        <div *ngIf="form.controls.plan.value === 'CUSTOM'">
+            <mat-label>Select Model Quality</mat-label><br />
+            <app-dropdown [values]="model_quality" (select)="form.controls.model_quality.setValue($event)">
+            </app-dropdown>
+        </div>
+        <div *ngIf="data.mode !== 'create'">
+            <div class="form-group">
+                <label for="role">Activate</label>
+                <mat-checkbox style="margin-left: 22px;" id="role" [ngModelOptions]="{standalone: true}" name="status" ngDefaultControl [(ngModel)]="data.is_active"></mat-checkbox>
+             </div>
+
+        </div>
+    </div>
+    <br />
+    <div mat-dialog-actions class="mat-dialog-actions">
+        <span class="right-align-next-element"></span>
+        <button class="secondary-btn" mat-stroked-button color="primary" (click)="onNoClick()">Cancel</button>
+        <button class="primary-btn" (click)="submit()" mat-stroked-button color="primary" cdkFocusInitial>{{data.mode==='create'?'Create':'Edit'}}</button>
+    </div>
+    <br />
+</form>

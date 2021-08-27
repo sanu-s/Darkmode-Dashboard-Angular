@@ -1,0 +1,24 @@
+<nav>
+<mat-toolbar *ngIf="user" color="primary">
+    <button (click)="backClicked()" mat-icon-button>
+        <span class="material-icons">
+            home
+        </span>
+    </button>
+
+    <span class="example-spacer"></span>
+    <mat-slide-toggle  style="font-size:small;margin-right: 15px;" [checked]="isDarkTheme" (change)="toggleDarkTheme($event.checked)">Dark Mode</mat-slide-toggle>
+    <!-- <button routerLink="/profile" style="float:left" mat-icon-button>
+        <span class="material-icons">
+            perm_identity
+        </span>
+    </button> -->
+    <span style="cursor: pointer;" [matMenuTriggerFor]="menu" class="profile-icon"><img *ngIf="user.icon" [src]="getSantizeUrl(user.icon)"><span *ngIf="!user.icon">{{user?.name[0]}}</span></span>
+</mat-toolbar>
+</nav>
+
+<mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink='/profile'>Profile</button>
+    <button mat-menu-item routerLink='/admin/user-details/{{user?.id}}' *ngIf="!user?.is_admin">Subscription</button>
+    <button mat-menu-item (click)="logout()">Logout</button>
+  </mat-menu>

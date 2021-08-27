@@ -1,0 +1,237 @@
+// .login-box {
+//     height: 100%;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     button {
+//         margin: auto;
+//         display: block;
+//     }
+//   }
+
+
+
+
+
+
+h1, h2, h3, h4, h5, h6{
+    font-weight: 300;
+}
+#wrapper{
+    display: flex;
+    flex-direction: row;
+    background: hsl(252,71,1);
+    color: white;
+    
+}
+#left{
+    flex:1;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+}
+#right{
+    flex:1;
+    
+    }
+/* Sign In */
+
+input {
+	background-color: #eee;
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 100%;
+}
+
+#signin{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    padding-bottom: 0.1rem;
+}
+#signin form{
+    width: 80%;
+    padding-bottom: 1rem;
+}
+
+#signin .logo{
+    margin-bottom: 8vh;
+}
+#signin .logo img{
+    width: 300px;
+    
+}
+#signin label{
+    
+    font-size: 0.9rem;
+    line-height: 2rem;
+    font-weight: 500;
+}
+#signin .text-input{
+    margin-bottom: 1.3rem;
+    width: 100%;
+    border-radius: 2px;
+    background: #ffffff;
+    border: 1px solid #555555;
+    color: #cccccc;
+    padding: 0.5rem 1rem;
+    line-height: 1.3rem;
+}
+#signin .primary-btn{
+    width: 100%;
+}
+
+#signin .secondary-btn,
+.or, 
+.links{
+    width: 60%;
+}
+
+#signin .links a{
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    
+}
+
+#signin .or{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1.2rem;
+    align-items: center;
+}
+
+#signin .or .bar{
+    flex: auto;
+    border: none;
+    height: 1px;
+    background: #aaaaaa;
+}
+
+#signin .or span{
+    color: #ccc;
+    padding: 0 0.9rem;
+}
+/* Showcase */
+#showcase{
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    background: url('../../../../assets/helsi.jpg') no-repeat center center / cover;
+      
+}
+ #showcase .showcase-text{ 
+    font-size: 2rem;
+    font-weight: 800;
+    width: 100%;
+    color: #fff;
+    line-height: normal;
+    /* margin-bottom: 25rem; */
+    font-family: 'Oswald', sans-serif;
+}
+#showcase .showcase-text:hover{
+    color: #fff239;
+    cursor: pointer;
+}
+#showcase .secondary-btn{
+    width: 60%;
+     margin: auto; 
+     margin-bottom: 20rem;
+     font-style: oblique;
+}
+
+/* footer */
+#main-footer{
+    color: #ccc;
+    text-align: center;
+    font-size: 0.8rem;
+    max-width: 80%;
+    padding-top: 4rem;
+}
+#main-footer a {
+    color: #ccc;
+    text-decoration: none;
+}
+
+/* Button */
+.primary-btn{
+    padding: 0.7rem 1rem;
+    height: 2.7rem;
+    display: block;
+    border: 0;
+    border-radius: 2px;
+    font-weight: 600;
+    background: #2196f3;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.5s;
+}
+
+.primary-btn:hover{
+    background-color: #43A047;
+}
+
+.secondary-btn{
+    padding: 0.7rem 1rem;
+    height: 2.7rem;
+    display: block;
+    border-radius: 2px;
+    font-weight: 500;
+    background: none;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.5s;
+    
+}
+
+.secondary-btn:hover{
+    border-color: #fff239;
+    color: #fff239;
+}
+
+/* Media Queries */
+@media(min-width: 1200px){
+    #left{
+        flex: 4;
+    }
+    #right{
+        flex: 6;
+    }
+}
+@media(max-width: 768px){
+body{
+    overflow: auto;
+}
+
+    #right{
+        display: none;
+    }
+    #left{
+        justify-content: start;
+        margin-top: 4vh;
+    }
+    #singin .logo{
+        margin-bottom: 2vh;
+    }
+    #sigin .text-input{
+        margin-bottom: 0.7rem;
+    }
+    #main-footer{
+        padding-top: 1rem;
+    }
+
+}

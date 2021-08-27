@@ -1,0 +1,29 @@
+<form [formGroup]="projectForm" *ngIf="data?.mode == 'edit' ">
+<div mat-dialog-content>
+  <mat-form-field appearance="outline">
+    <mat-label>Name</mat-label>
+    <input matInput minlength="4" formControlName="name">
+  </mat-form-field>
+  <br />
+    <mat-form-field appearance="outline">
+    <mat-label>Description</mat-label>
+    <textarea matInput minlength="20" formControlName="description"></textarea>
+  </mat-form-field>
+</div>
+  <br />
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [disabled]="projectForm.invalid" (click)="edit()" cdkFocusInitial>Save</button>
+</div>
+</form>
+
+<div *ngIf="data?.mode == 'delete'">
+<div mat-dialog-content class ="delete" >
+ <span>Do you really want to delete '</span><span style="font-weight:600">{{data?.name}}</span>' ?
+</div>
+  <br />
+<div mat-dialog-actions >
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="delete()" cdkFocusInitial>Delete</button>
+</div>
+</div>

@@ -1,0 +1,61 @@
+<mat-accordion *ngIf="projects">
+  <div class="container">
+    <input type="text" [(ngModel)]="searchText" placeholder="Search...">
+    <div class="search"></div>
+  </div>
+  <div *ngFor="let project of projects | filter:searchText; let i=index">
+    <mat-expansion-panel #mep="matExpansionPanel" (opened)="panelOpenState = true; open(project?.id)"
+      (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <span>
+            <h1>{{project?.name}}</h1>
+          </span>
+          <span style="color: #a9a5a9;font-weight: 300">{{project?.description}}</span><br />
+          <p style="color: gray;"><span style=" float:left">File Name: </span><span style="font-weight:600; font-size: 15px; float: left;
+    margin-left: 10px;">{{project?.file_name}}</span></p><br />
+          <p style="color: gray;"><span style=" float:left">Features: </span><span style="font-weight:600; font-size: 15px;float: left;
+    margin-left: 10px;">{{project?.features}}</span></p><br />
+          <p style="color: gray;"><span style=" float:left">Rows: </span><span style="font-weight:600; font-size: 15px; float: left;
+    margin-left: 10px;">{{project?.rows}}</span></p><br />
+
+
+
+
+        </mat-panel-title>
+
+        <mat-panel-description>
+          <app-graph [columngraphvalues]="{type:'ColumnChart', data: project?.mini_statistics}"></app-graph>
+          <div class="icons">
+            <span (click)="onEvent($event);openDialog(project, 'edit')" class="material-icons">
+              create
+            </span>
+            <span class="material-icons" (click)="openDialog(project, 'delete');onEvent($event)">
+              delete
+            </span>
+          </div>
+
+
+        </mat-panel-description>
+
+
+      </mat-expansion-panel-header>
+
+      <div>
+        <span class="outer-tog">
+          <div class="inner-tog inner-tog-1" [ngStyle]="view && {'background': 'gray', 'color':'white'}"
+            (click)="mep.expanded = !mep.expanded;">View Details</div>
+          <div class="inner-tog">Model</div>
+        </span>
+        <app-project-details [opened]="opened"></app-project-details>
+      </div>
+
+
+
+    </mat-expansion-panel>
+    <span *ngIf="!mep.expanded" class="outer">
+      <div class="inner inner-1" (click)="mep.expanded = !mep.expanded">Project Details</div>
+      <div class="inner inner-2">Models</div>
+    </span>
+  </div>
+</mat-accordion>

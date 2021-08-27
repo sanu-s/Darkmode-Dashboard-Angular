@@ -1,0 +1,3 @@
+<mat-menu  name="fieldName" ngDefaultControl >
+  <button mat-menu-item (click)="selectItem(item.value)" *ngFor="let item of menuvalues" [value]="item">{{item.value}}</button>
+</mat-menu>

@@ -1,0 +1,114 @@
+
+<div class="profile-page">
+<div style="width:20%; height:100vh;float:left;position:fixed;background:gray;color:white;text-align: center;
+padding-top: 14%;">
+<div class="inner-pro">
+<h3 (click)="scroll(target1, 1)" [ngClass]="{'active': currentActive === 1}">Profile settings</h3>
+<h3 (click)="scroll(target2, 2)" [ngClass]="{'active': currentActive === 2}" >Change password</h3>
+<h3 *ngIf="!user?.is_admin" (click)="scroll(target3, 3)" [ngClass]="{'active': currentActive === 3}" >Deactivate account</h3>
+</div>
+
+</div>
+
+
+<div style="width: 80%; float:left;margin-left: 20%;" class="profile-cont">
+
+<div #target1>
+    <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+        <div style="padding-bottom:5%;padding-top: 1%;">
+            <h1 style="margin-top: 8%;
+            margin-bottom: 6%;text-decoration: underline;">Profile Settings</h1>
+
+
+            <label class="hoverable" for="fileInput">
+                <img *ngIf="user?.icon" [src]="getSantizeUrl(user?.icon)">
+                <div class="profile-icon" *ngIf="!user?.icon && profileForm.controls.name.value">{{profileForm.controls.name.value[0]}}</div>
+                <div class="hover-text"><span class="material-icons">
+                        edit
+                    </span></div>
+                <div class="background"></div>
+            </label>
+            <br />
+
+            <input id="fileInput" type='file' accept=".png, .jpg, .jpeg, .gif, .bmp"
+                (change)="onSelectFile($event.target.files)">
+
+
+            <div style="margin-top: 60px;">
+
+                <p>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Name</mat-label>
+                        <input matInput formControlName="name" placeholder="Enter Name">
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email" placeholder="Email">
+                    </mat-form-field>
+                </p>
+            </div>
+            <button [disabled]="name === profileForm.controls.name.value?.trim() || !profileForm.valid"
+                mat-stroked-button color="primary">Update</button>
+        </div>
+    </form>
+</div>
+<div #target2>
+    <form [formGroup]="passwordForm">
+        <div style="
+        padding-top: 8%; padding-top: 8%;">
+            <h1 style="
+            margin-bottom: 6%; text-decoration: underline;">Change Password</h1>
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>New Password</mat-label>
+                    <input type="password" formControlName="password1" matInput placeholder="New Password">
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Re-enter Password</mat-label>
+                    <input type="password" formControlName="password2" matInput placeholder="Re-enter Password">
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Old Password</mat-label>
+                    <input type="password" formControlName="passwordold" matInput placeholder="Old Password">
+                </mat-form-field>
+            </p>
+            <button [disabled]="!passwordForm.valid" (click)="updatePassword()" mat-stroked-button
+                color="primary">Update</button>
+        </div>
+      
+    </form>
+
+</div>
+
+<div #target3  style="text-align: center; padding-top: 8%;padding-bottom: 30%;
+">
+
+    <h1 style="text-decoration: underline;"  *ngIf="!user?.is_admin">Deactivate Account</h1>
+ 
+        <div class="wrap" style="text-align: center;" *ngIf="!user?.is_admin">
+            <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                [(ngModel)]="favoriteReason">
+                <p id="example-radio-group-label">Pick a reason to deactivate your account:</p><br />
+                <mat-radio-button class="example-radio-button" *ngFor="let reason of reasons" [value]="reason">
+                    {{reason}}
+                </mat-radio-button>
+                <textarea placeholder="Type atleast 10 characters" minlength="9" maxlength="100" [(ngModel)]="other_reason" *ngIf="favoriteReason=='Other, please explain further:'"></textarea>
+                <button  style="margin-top:15%" *ngIf="favoriteReason" [disabled]="favoriteReason=='Other, please explain further:'?other_reason?.length>9?false:true:false" (click)="deleteAcc()" mat-stroked-button
+                color="primary">Confirm Deactivate</button>
+            </mat-radio-group>
+          
+
+        </div>
+
+
+</div>
+</div>
+</div>
+
+

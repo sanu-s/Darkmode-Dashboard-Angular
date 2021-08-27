@@ -1,0 +1,66 @@
+<!-- <mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
+</mat-form-field> -->
+<div style="height: 100vh;">
+<mat-tab-group mat-stretch-tabs (selectedTabChange)="type($event)" style="margin-top: 64px;">
+  <mat-tab label="Admin"></mat-tab>
+  <mat-tab label="User"></mat-tab>
+</mat-tab-group>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 usertable">
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> No. </th>
+    <td mat-cell *matCellDef="let element;let i=index"> {{i + 1}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name. </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef> Email. </th>
+    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="created_at">
+    <th mat-header-cell *matHeaderCellDef> Created At. </th>
+    <td mat-cell *matCellDef="let element"> {{element.created_at}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="is_active">
+    <th mat-header-cell *matHeaderCellDef> Status. </th>
+    <td mat-cell *matCellDef="let element"> {{element.is_active?'Active':'Inactive'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="is_deleted">
+    <th mat-header-cell *matHeaderCellDef> Deleted. </th>
+    <td mat-cell *matCellDef="let element"> {{element.is_deleted?'Yes':'No'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="options">
+    <th mat-header-cell *matHeaderCellDef><span class="material-icons" (click)="openDialog()">
+        add
+      </span></th>
+    <td mat-cell *matCellDef="let element"> 
+      <span *ngIf="usertype==='normal'" 
+        class="material-icons" (click)="edit(element); $event.stopPropagation()">
+        edit
+      </span>
+      <span *ngIf="usertype==='normal'" (click)="delete(element.id, element.email); $event.stopPropagation()" class="material-icons">
+        delete_outline
+      </span>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr [ngStyle]="usertype=='normal' && {'cursor': 'pointer'}" mat-row *matRowDef="let row; columns: displayedColumns;" (click)="navigateTodetails(row.id)"></tr>
+</table>
+</div>
+
+<!-- <app-menu #x [menuvalues]="dropdownValues" (menuselect)="action($event)"></app-menu> -->
